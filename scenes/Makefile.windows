@@ -1,13 +1,21 @@
 
-BLENDER="C:\Program Files\Blender Foundation\Blender 2.90\blender.exe"
+BLENDER="C:\Program Files\Blender Foundation\Blender 2.93\blender.exe"
 DIST=../dist
 
 all : \
     $(DIST)/hexapod.pnct \
     $(DIST)/hexapod.scene \
+    $(DIST)/car.pnct \
+    $(DIST)/car.scene \
 
 $(DIST)/hexapod.scene : hexapod.blend export-scene.py
     $(BLENDER) --background --python export-scene.py -- "hexapod.blend:Main" "$(DIST)/hexapod.scene"
 
 $(DIST)/hexapod.pnct : hexapod.blend export-meshes.py
     $(BLENDER) --background --python export-meshes.py -- "hexapod.blend:Main" "$(DIST)/hexapod.pnct" 
+
+$(DIST)/car.scene : car.blend export-scene.py
+    $(BLENDER) --background --python export-scene.py -- "car.blend:Car_Parent" "$(DIST)/car.scene"
+
+$(DIST)/car.pnct : car.blend export-meshes.py
+    $(BLENDER) --background --python export-meshes.py -- "car.blend:Car_Parent" "$(DIST)/car.pnct" 
