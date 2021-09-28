@@ -9,7 +9,7 @@
 #include "data_path.hpp"
 
 #include <glm/gtc/type_ptr.hpp>
-
+#include <algorithm> 
 #include <random>
 
 #define GRAVITY 5.0f
